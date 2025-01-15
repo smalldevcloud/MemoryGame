@@ -13,7 +13,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var movesLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
     
-    let game = Game()
+    //let game = Game()
+    var game = GameModel()
     var movesCounter = 0
     var timer: Timer?
     
@@ -33,7 +34,7 @@ class ViewController: UIViewController {
                 collectionView.reloadItems(at: [indexPath])
                 // MARK: таймер на секунду, чтобы юзер успел увидеть какое число скрывалось за второй ячейкой
                 let timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { timer in
-                    self.checkCells()
+                    //self.checkCells()
                     self.movesCounter += 1
                     self.movesLabel.text = "Moves: \(self.movesCounter)"
                     self.collectionView.reloadData()
@@ -53,6 +54,7 @@ class ViewController: UIViewController {
         self.collectionView.contentInsetAdjustmentBehavior = .always
         let collectionNib = UINib(nibName: "CollectionViewCell", bundle: nil)
         self.collectionView.register(collectionNib, forCellWithReuseIdentifier: CollectionViewCell.identifier)
+        collectionView.reloadData()
     }
     
     override func viewWillLayoutSubviews() {
@@ -65,25 +67,9 @@ class ViewController: UIViewController {
         timer?.invalidate()
         movesCounter = 0
         movesLabel.text = "Moves: \(movesCounter)"
-        game.startNewGame()
+        game.generateNewGame()
         startTimer()
         collectionView.reloadData()
-    }
-    
-    func checkCells() {
-        // MARK: запуск проверки, можно добавить какую-нибудь анимацию на успех или неуспех
-        if game.checkPair(chosenCells[0], chosenCells[1]) {
-            print("Bingo!")
-        } else {
-            print("Nope.")
-        }
-        chosenCells.removeAll()
-    }
-    
-    func setCell(index: Int) {
-        // MARK: установка выбранной ячейки для проверки
-        chosenCells.append(index)
-        
     }
     
     func startTimer() {
@@ -95,48 +81,40 @@ class ViewController: UIViewController {
     }
     
     func updateTimerLabel() {
-        // MARK: обновление лейбла с временем
-        if let gameTime = game.getGameTime() {
-            timerLabel.text = String(format: "Time: %.0f", gameTime)
-        }
+//        // MARK: обновление лейбла с временем
+//        if let gameTime = game.getGameTime() {
+//            timerLabel.text = String(format: "Time: %.0f", gameTime)
+//        }
     }
     
     func checkGameOver() {
-        // MARK: проверка не угадал ли уже юзер все пары, и если угадал то алёрт и остановка игры
-        if game.guessedPairs.count == game.pairs.count {
-            timer?.invalidate()
-            let alert = UIAlertController(title: "You Win!", message: "wow, that's impressive", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
-                alert.dismiss(animated: true)
-            })
-            present(alert, animated: true, completion: nil)
-        }
+//        // MARK: проверка не угадал ли уже юзер все пары, и если угадал то алёрт и остановка игры
+//        if game.guessedPairs.count == game.pairs.count {
+//            timer?.invalidate()
+//            let alert = UIAlertController(title: "You Win!", message: "wow, that's impressive", preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
+//                alert.dismiss(animated: true)
+//            })
+//            present(alert, animated: true, completion: nil)
+//        }
         }
 }
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return game.pairs.count
+        return game.cards.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.identifier, for: indexPath) as? CollectionViewCell else { return UICollectionViewCell() }
         // MARK: если ячейка не угадана - показывает "?"
-        cell.label.text = " ? "
-        if game.guessedPairs.contains(indexPath.row) {
-            cell.label.text = " \(indexPath.row) : \(game.pairs[indexPath.row]!)"
-        }
-        // MARK: если ячейка нажата - отображается её индекс и индекс пары
-        if chosenCells.contains(indexPath.row) {
-            cell.label.text = " \(indexPath.row) : \(game.pairs[indexPath.row]!)"
-        }
-
+        cell.label.text = String(game.cards[indexPath.row].pairId)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        setCell(index: indexPath.row)
+        //setCell(index: indexPath.row)
     }
 }
 
