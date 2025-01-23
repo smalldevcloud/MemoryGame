@@ -12,49 +12,21 @@ class ViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var movesLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
-    
-    //let game = Game()
-    var game = GameModel()
-    var movesCounter = 0
-    var timer: Timer?
+    var viewModel = GameViewModel()
+    var cards: [Card] = []
     
     @IBAction func newGameTapped(_ sender: UIButton) {
         // MARK: перезапуск игры
-        startGame()
-    }
-    
-    var chosenCells: [Int] = [] {
-        didSet {
-            // MARK: здесь хранятся выбранные ячейки, и как только их становится 2 - происходит проверка пара ли они
-            if chosenCells.count == 1 {
-                let indexPath = IndexPath(item: chosenCells.last ?? 0, section: 0)
-                collectionView.reloadItems(at: [indexPath])
-            } else if chosenCells.count == 2 {
-                let indexPath = IndexPath(item: chosenCells.last ?? 0, section: 0)
-                collectionView.reloadItems(at: [indexPath])
-                // MARK: таймер на секунду, чтобы юзер успел увидеть какое число скрывалось за второй ячейкой
-                let timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { timer in
-                    //self.checkCells()
-                    self.movesCounter += 1
-                    self.movesLabel.text = "Moves: \(self.movesCounter)"
-                    self.collectionView.reloadData()
-                }
-
-            }
-            checkGameOver()
-        }
+        viewModel.startNewGame()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.startGame()
-        self.collectionView.backgroundColor = .clear
-        self.collectionView.delegate = self
-        self.collectionView.dataSource = self
-        self.collectionView.contentInsetAdjustmentBehavior = .always
-        let collectionNib = UINib(nibName: "CollectionViewCell", bundle: nil)
-        self.collectionView.register(collectionNib, forCellWithReuseIdentifier: CollectionViewCell.identifier)
-        collectionView.reloadData()
+        self.setupUI()
+        self.bindMainState()
+        self.bindStepsState()
+        self.bindTimerState()
+        self.viewModel.start()
     }
     
     override func viewWillLayoutSubviews() {
@@ -62,21 +34,59 @@ class ViewController: UIViewController {
         collectionView.collectionViewLayout.invalidateLayout()
     }
     
-    func startGame() {
-        // MARK: обновление лейблов и таймера перед запуском новой игры и запуск
-        timer?.invalidate()
-        movesCounter = 0
-        movesLabel.text = "Moves: \(movesCounter)"
-        game.generateNewGame()
-        startTimer()
-        collectionView.reloadData()
+    func setupUI() {
+        self.collectionView.backgroundColor = .clear
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
+        self.collectionView.contentInsetAdjustmentBehavior = .always
+        let collectionNib = UINib(nibName: "CollectionViewCell", bundle: nil)
+        self.collectionView.register(collectionNib, forCellWithReuseIdentifier: CollectionViewCell.identifier)
     }
     
-    func startTimer() {
-        // MARK: таймер для обновления лейбла с временем раз в секунду
-        timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-            self.updateTimerLabel()
+    func bindMainState() {
+        viewModel.mainState.bind { [weak self] (newState) in
+            switch newState {
+            case .firstLaunch:
+                self?.collectionView.reloadData()
+            case let .newGameStarted(newCards):
+                self?.cards = newCards
+                self?.collectionView.reloadData()
+            case let .openCard(index):
+                DispatchQueue.main.async {
+                    let indexPath = IndexPath(row: index, section: 0)
+                    self?.collectionView.reloadItems(at: [indexPath])
+                }
+            case .updateCollection:
+                self?.collectionView.reloadData()
+            case .gameOver:
+                let alert = UIAlertController(title: "You Win!", message: "wow, that's impressive", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
+                    alert.dismiss(animated: true)
+                })
+                self?.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func bindStepsState() {
+        viewModel.stepsState.bind { [weak self] (newValue) in
+            switch newValue {
+            case .zeroState:
+                self?.movesLabel.text = "0"
+            case let .newValue(step):
+                self?.movesLabel.text = String(step)
+            }
+        }
+    }
+    
+    func bindTimerState() {
+        viewModel.timerState.bind { [weak self] (newValue) in
+            switch newValue {
+            case .zeroState:
+                self?.timerLabel.text = "00:00"
+            case let .newValue(value):
+                self?.timerLabel.text = value
+            }
         }
     }
     
@@ -103,18 +113,30 @@ class ViewController: UIViewController {
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return game.cards.count
+        return cards.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.identifier, for: indexPath) as? CollectionViewCell else { return UICollectionViewCell() }
         // MARK: если ячейка не угадана - показывает "?"
-        cell.label.text = String(game.cards[indexPath.row].pairId)
+        let gameCard = cards[indexPath.row]
+        if gameCard.isGuessed {
+            cell.label.text = String(gameCard.pairId)
+        } else {
+            if gameCard.isOpen {
+                cell.label.text = String(gameCard.pairId)
+            } else {
+                cell.label.text = "?"
+            }
+        }
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //setCell(index: indexPath.row)
+        DispatchQueue.main.async {
+            self.viewModel.cardTapped(at: indexPath.row)
+        }
     }
 }
 

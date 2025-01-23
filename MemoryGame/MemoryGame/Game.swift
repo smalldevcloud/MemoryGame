@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Game {
+class Gameffff {
     var pairs: [Int: Int] = [:]
     var guessedPairs: [Int] = []
     var startTime: Date?

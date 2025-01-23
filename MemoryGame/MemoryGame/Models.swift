@@ -11,7 +11,7 @@ class Card {
     let id: UUID
     let pairId: Int
     var isGuessed: Bool = false
-    
+    var isOpen: Bool = false
     init(id: UUID, pairId: Int) {
         self.pairId = pairId
         self.id = id
@@ -22,17 +22,19 @@ struct Pair {
     let id: Int
     let firstItem: Card
     let secondItem: Card
-    
-    func isPair(for pair: Pair) -> Bool {
-        return false
-    }
 }
 
-struct GameModel {
+struct Game {
     private var pairs: [Pair] = []
+    private var guessedPairs: [Pair] = []
     var cards: [Card] = []
+    var chosenCard: Card?
+    var isBlocked = false
+    var startTime: Date?
+    
     mutating func generateNewGame() {
         self.pairs = []
+        self.guessedPairs = []
         self.cards = []
         var counter = 1
         for _ in 0...7 {
@@ -48,9 +50,98 @@ struct GameModel {
             cards.append(pair.secondItem)
         }
         cards.shuffle()
+        startTime = Date()
     }
     
-    func checkPair(cardPairId: Int) {
+    mutating func isMatch(cardIndex: Int) -> Bool {
+        isBlocked = true
+        guard cards[cardIndex].id != chosenCard?.id else {
+            print("is already open, bitch!")
+            return false
+        }
+        
+        if let currCard = chosenCard {
+            if cards[cardIndex].pairId == currCard.pairId {
+                currCard.isGuessed = true
+                cards[cardIndex].isGuessed = true
+                chosenCard = nil
+                isBlocked = false
+                setGuessedPair(pairId: currCard.pairId)
+                return true
+            } else {
+                chosenCard = nil
+                return false
+            }
+        } else {
+            chosenCard = cards[cardIndex]
+            isBlocked = false
+            return false
+        }
         
     }
+    mutating func setGuessedPair(pairId: Int) {
+        for pair in pairs {
+            if pair.id == pairId {
+                guessedPairs.append(pair)
+            }
+        }
+    }
+    
+    mutating func checkGameOver() -> Bool {
+        if guessedPairs.count == pairs.count {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    
+//    func checkPairIsGuessed(pairId: Int) -> Bool {
+//        if guessedPairs.contains(where: { pair in
+//            pair.id == pairId
+//        }) {
+//            return true
+//        } else {
+//            return false
+//        }
+//    }
 }
+
+struct StepsController {
+    var card1: Int?
+    var card2: Int?
+    var isBlocked: Bool = false
+    
+    mutating func setNewCard(card: Int) {
+        if card1 == nil {
+            card1 = card
+            isBlocked = false
+        } else if card2 == nil {
+            card2 = card
+            isBlocked = true
+        } else {
+            print("fuck you")
+        }
+    }
+
+    mutating func unblock() {
+        isBlocked = false
+    }
+}
+
+
+extension TimeInterval{
+
+        func stringFromTimeInterval() -> String {
+
+            let time = NSInteger(self)
+
+            let ms = Int((self.truncatingRemainder(dividingBy: 1)) * 1000)
+            let seconds = time % 60
+            let minutes = (time / 60) % 60
+            let hours = (time / 3600)
+
+            return String(format: "%0.2d:%0.2d",minutes,seconds)
+
+        }
+    }
