@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsViewController" customModule="MemoryGame" customModuleProvider="target">
+            <connections>
+                <outlet property="soundButton" destination="gJw-LP-3O4" id="yVQ-TG-EqS"/>
+                <outlet property="vibroButton" destination="N0t-ko-AWR" id="dOd-j1-lSp"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BG_settings" translatesAutoresizingMaskIntoConstraints="NO" id="U14-At-Tad">
+                    <rect key="frame" x="16" y="237" width="361" height="344"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="344" id="oDp-Lz-93H"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="option_background" translatesAutoresizingMaskIntoConstraints="NO" id="BKG-pP-TX5">
+                    <rect key="frame" x="76" y="291" width="241" height="59"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="59" id="MHR-Mx-Rr5"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="option_background" translatesAutoresizingMaskIntoConstraints="NO" id="3sn-JB-qto">
+                    <rect key="frame" x="76" y="366" width="241" height="59"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="59" id="oPf-uA-wk6"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lka-Xp-d1o">
+                    <rect key="frame" x="151" y="303.33333333333331" width="91" height="34.333333333333314"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="RESUME"/>
+                    <connections>
+                        <action selector="resumeTapped:" destination="-1" eventType="touchUpInside" id="tSE-8c-lfw"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GlW-7s-a8x">
+                    <rect key="frame" x="137.33333333333334" y="378.33333333333331" width="118.66666666666666" height="34.333333333333314"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="MAIN MENU"/>
+                    <connections>
+                        <action selector="menuTapped:" destination="-1" eventType="touchUpInside" id="JmE-7B-Cwl"/>
+                    </connections>
+                </button>
+                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cxn-kL-SaZ">
+                    <rect key="frame" x="111.66666666666669" y="433" width="170" height="75"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJw-LP-3O4">
+                            <rect key="frame" x="0.0" y="0.0" width="85" height="75"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" image="Mute Sound"/>
+                            <connections>
+                                <action selector="soundTapped:" destination="-1" eventType="touchUpInside" id="31s-qz-ND9"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N0t-ko-AWR">
+                            <rect key="frame" x="84.999999999999986" y="0.0" width="85.000000000000014" height="75"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" image="NoVibro"/>
+                            <connections>
+                                <action selector="vibroTapped:" destination="-1" eventType="touchUpInside" id="OMM-DO-gG1"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <constraints>
+                <constraint firstItem="U14-At-Tad" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="9pJ-8x-27V"/>
+                <constraint firstItem="3sn-JB-qto" firstAttribute="trailing" secondItem="U14-At-Tad" secondAttribute="trailing" constant="-60" id="ApP-7P-1BQ"/>
+                <constraint firstItem="GlW-7s-a8x" firstAttribute="centerX" secondItem="3sn-JB-qto" secondAttribute="centerX" id="JHZ-5U-eHp"/>
+                <constraint firstItem="3sn-JB-qto" firstAttribute="top" secondItem="BKG-pP-TX5" secondAttribute="bottom" constant="16" id="MyP-gl-qah"/>
+                <constraint firstItem="BKG-pP-TX5" firstAttribute="leading" secondItem="U14-At-Tad" secondAttribute="leading" constant="60" id="V7z-gm-zwy"/>
+                <constraint firstItem="BKG-pP-TX5" firstAttribute="top" secondItem="U14-At-Tad" secondAttribute="top" constant="54" id="Xen-ya-eSL"/>
+                <constraint firstItem="GlW-7s-a8x" firstAttribute="centerY" secondItem="3sn-JB-qto" secondAttribute="centerY" id="aeH-Lb-Cus"/>
+                <constraint firstItem="Lka-Xp-d1o" firstAttribute="centerY" secondItem="BKG-pP-TX5" secondAttribute="centerY" id="apG-HX-WTn"/>
+                <constraint firstItem="3sn-JB-qto" firstAttribute="leading" secondItem="U14-At-Tad" secondAttribute="leading" constant="60" id="fAG-FO-HIK"/>
+                <constraint firstItem="Cxn-kL-SaZ" firstAttribute="centerX" secondItem="U14-At-Tad" secondAttribute="centerX" id="fCL-87-vAS"/>
+                <constraint firstItem="BKG-pP-TX5" firstAttribute="trailing" secondItem="U14-At-Tad" secondAttribute="trailing" constant="-60" id="lQU-oR-z3w"/>
+                <constraint firstItem="U14-At-Tad" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="178" id="qvy-ZG-b8z"/>
+                <constraint firstItem="Cxn-kL-SaZ" firstAttribute="top" secondItem="3sn-JB-qto" secondAttribute="bottom" constant="8" symbolic="YES" id="whW-Pa-2NN"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="U14-At-Tad" secondAttribute="trailing" constant="16" id="wjk-uN-zyP"/>
+                <constraint firstItem="Lka-Xp-d1o" firstAttribute="centerX" secondItem="BKG-pP-TX5" secondAttribute="centerX" id="ypq-Sd-e2W"/>
+            </constraints>
+            <point key="canvasLocation" x="-164.12213740458014" y="-37.323943661971832"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="BG_settings" width="2044" height="1858"/>
+        <image name="Mute Sound" width="61" height="61"/>
+        <image name="NoVibro" width="61" height="61"/>
+        <image name="option_background" width="912" height="176"/>
+    </resources>
+</document>
