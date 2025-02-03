@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,28 +16,28 @@
                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="slot" translatesAutoresizingMaskIntoConstraints="NO" id="h8R-rO-xIW">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="slot" translatesAutoresizingMaskIntoConstraints="NO" id="h8R-rO-xIW" userLabel="slot background">
                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="onB-8L-Lt1">
-                        <rect key="frame" x="4" y="27" width="42" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KZE-z3-VCx" userLabel="numbered slot">
+                        <rect key="frame" x="5" y="8" width="40" height="35"/>
+                    </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
+                <constraint firstItem="KZE-z3-VCx" firstAttribute="bottom" secondItem="h8R-rO-xIW" secondAttribute="bottom" constant="-7" id="3tN-mQ-E6k"/>
                 <constraint firstItem="h8R-rO-xIW" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="E8J-D3-BKh"/>
-                <constraint firstItem="onB-8L-Lt1" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="Qa2-Uu-Qe9"/>
+                <constraint firstItem="KZE-z3-VCx" firstAttribute="leading" secondItem="h8R-rO-xIW" secondAttribute="leading" constant="5" id="IPF-aC-Kdq"/>
                 <constraint firstAttribute="trailing" secondItem="h8R-rO-xIW" secondAttribute="trailing" id="Qq5-n0-fH9"/>
+                <constraint firstItem="KZE-z3-VCx" firstAttribute="top" secondItem="h8R-rO-xIW" secondAttribute="top" constant="8" id="dyF-CQ-zcV"/>
                 <constraint firstAttribute="top" secondItem="h8R-rO-xIW" secondAttribute="top" id="gsx-tx-fuG"/>
-                <constraint firstItem="onB-8L-Lt1" firstAttribute="centerY" secondItem="ZTg-uK-7eu" secondAttribute="centerY" id="pIw-x8-2R3"/>
                 <constraint firstAttribute="bottom" secondItem="h8R-rO-xIW" secondAttribute="bottom" id="sDJ-Ip-3h6"/>
+                <constraint firstItem="KZE-z3-VCx" firstAttribute="trailing" secondItem="h8R-rO-xIW" secondAttribute="trailing" constant="-5" id="v0n-wk-Yjs"/>
             </constraints>
             <connections>
-                <outlet property="label" destination="onB-8L-Lt1" id="oPE-Dz-cIO"/>
+                <outlet property="numberedSlot" destination="KZE-z3-VCx" id="QNV-jt-gTM"/>
+                <outlet property="slotBackground" destination="h8R-rO-xIW" id="ylj-hW-Ac6"/>
             </connections>
             <point key="canvasLocation" x="83.969465648854964" y="-11.267605633802818"/>
         </collectionViewCell>

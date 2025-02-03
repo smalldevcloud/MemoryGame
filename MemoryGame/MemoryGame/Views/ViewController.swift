@@ -20,6 +20,21 @@ class ViewController: UIViewController {
         viewModel.startNewGame()
     }
     
+    @IBAction func settingsTapped(_ sender: UIButton) {
+        viewModel.switchToSettings()
+
+    }
+    
+    @IBAction func backButtonTapped(_ sender: UIButton) {
+        print("back to menu")
+    }
+    
+    @IBAction func pauseButtonTapped(_ sender: Any) {
+        print("pause. don't work")
+    }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
@@ -27,6 +42,7 @@ class ViewController: UIViewController {
         self.bindStepsState()
         self.bindTimerState()
         self.viewModel.start()
+        
     }
     
     override func viewWillLayoutSubviews() {
@@ -59,11 +75,19 @@ class ViewController: UIViewController {
             case .updateCollection:
                 self?.collectionView.reloadData()
             case .gameOver:
-                let alert = UIAlertController(title: "You Win!", message: "wow, that's impressive", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
-                    alert.dismiss(animated: true)
-                })
-                self?.present(alert, animated: true, completion: nil)
+                DispatchQueue.main.async {
+                    guard let strongSelf = self else { return }
+                    let vc = WinViewController()
+                    vc.delegate = self
+                    if let time = strongSelf.timerLabel.text, let steps = strongSelf.movesLabel.text {
+                        vc.textToSet = "\(time)\n\(steps)"
+                        vc.modalPresentationStyle = .formSheet
+                        strongSelf.present(vc, animated: true)
+                    }
+                }
+            case .settings:
+                
+                self?.collectionView.reloadData()
             }
         }
     }
@@ -72,9 +96,9 @@ class ViewController: UIViewController {
         viewModel.stepsState.bind { [weak self] (newValue) in
             switch newValue {
             case .zeroState:
-                self?.movesLabel.text = "0"
+                self?.movesLabel.text = "MOVIES: 0"
             case let .newValue(step):
-                self?.movesLabel.text = String(step)
+                self?.movesLabel.text = "MOVIES: \(step)"
             }
         }
     }
@@ -83,9 +107,9 @@ class ViewController: UIViewController {
         viewModel.timerState.bind { [weak self] (newValue) in
             switch newValue {
             case .zeroState:
-                self?.timerLabel.text = "00:00"
+                self?.timerLabel.text = "TIME: 00:00"
             case let .newValue(value):
-                self?.timerLabel.text = value
+                self?.timerLabel.text = "TIME: \(value)"
             }
         }
     }
@@ -121,12 +145,15 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         // MARK: если ячейка не угадана - показывает "?"
         let gameCard = cards[indexPath.row]
         if gameCard.isGuessed {
-            cell.label.text = String(gameCard.pairId)
+            cell.numberedSlot.image = UIImage(named: "slot\(gameCard.pairId)")
+//            cell.label.text = String(gameCard.pairId)
         } else {
             if gameCard.isOpen {
-                cell.label.text = String(gameCard.pairId)
+                cell.numberedSlot.image = UIImage(named: "slot\(gameCard.pairId)")
+//                cell.label.text = String(gameCard.pairId)
             } else {
-                cell.label.text = "?"
+                cell.numberedSlot.image = nil
+//                cell.label.text = "?"
             }
         }
         
@@ -143,25 +170,55 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegateFlowLayout
 extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let columns: CGFloat = 4
-        // Match spacing below
-        let spacing: CGFloat = 5
-        let totalHorizontalSpacing = (columns - 1) * spacing
+        switch viewModel.mainState.value {
+        case .firstLaunch, .newGameStarted, .openCard, .updateCollection, .gameOver:
+            let columns: CGFloat = 4
+            // Match spacing below
+            let spacing: CGFloat = 5
+            let totalHorizontalSpacing = (columns - 1) * spacing
 
-        let itemWidth = (collectionView.bounds.width - totalHorizontalSpacing) / columns
-        let itemSize = CGSize(width: itemWidth, height: itemWidth * 1.2)
+            let itemWidth = (collectionView.bounds.width - totalHorizontalSpacing) / columns
+            let gameItemSize = CGSize(width: itemWidth, height: itemWidth * 1.2)
 
-        return itemSize
+            return gameItemSize
+        case .settings:
+            let settingsItemSize = CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
+            return settingsItemSize
+        }
+
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         // horizontal space between items
-        return 5
+        switch viewModel.mainState.value {
+        case .firstLaunch, .newGameStarted, .openCard, .updateCollection, .gameOver:
+            return 5
+        case .settings:
+            return 0
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         // vertical space between lines
-        return 5
+        switch viewModel.mainState.value {
+        case .firstLaunch, .newGameStarted, .openCard, .updateCollection, .gameOver:
+            return 5
+        case .settings:
+            return 0
+        }
     }
+}
+
+extension ViewController: WinViewDelegateProtocol {
+    func newGamgeTapped() {
+        viewModel.stopGame()
+        viewModel.startNewGame()
+    }
+    
+    func menuTapped() {
+        print("menu tapped")
+    }
+    
+    
 }
 

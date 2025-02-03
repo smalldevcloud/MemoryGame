@@ -31,6 +31,7 @@ struct Game {
     var chosenCard: Card?
     var isBlocked = false
     var startTime: Date?
+    var steps: Int = 0
     
     mutating func generateNewGame() {
         self.pairs = []
@@ -50,7 +51,12 @@ struct Game {
             cards.append(pair.secondItem)
         }
         cards.shuffle()
+        
+    }
+    
+    mutating func startGame() {
         startTime = Date()
+        steps = 0
     }
     
     mutating func isMatch(cardIndex: Int) -> Bool {
@@ -61,6 +67,7 @@ struct Game {
         }
         
         if let currCard = chosenCard {
+            steps += 1
             if cards[cardIndex].pairId == currCard.pairId {
                 currCard.isGuessed = true
                 cards[cardIndex].isGuessed = true
@@ -72,6 +79,7 @@ struct Game {
                 chosenCard = nil
                 return false
             }
+            
         } else {
             chosenCard = cards[cardIndex]
             isBlocked = false
@@ -94,41 +102,7 @@ struct Game {
             return false
         }
     }
-
-    
-//    func checkPairIsGuessed(pairId: Int) -> Bool {
-//        if guessedPairs.contains(where: { pair in
-//            pair.id == pairId
-//        }) {
-//            return true
-//        } else {
-//            return false
-//        }
-//    }
 }
-
-struct StepsController {
-    var card1: Int?
-    var card2: Int?
-    var isBlocked: Bool = false
-    
-    mutating func setNewCard(card: Int) {
-        if card1 == nil {
-            card1 = card
-            isBlocked = false
-        } else if card2 == nil {
-            card2 = card
-            isBlocked = true
-        } else {
-            print("fuck you")
-        }
-    }
-
-    mutating func unblock() {
-        isBlocked = false
-    }
-}
-
 
 extension TimeInterval{
 
@@ -136,10 +110,10 @@ extension TimeInterval{
 
             let time = NSInteger(self)
 
-            let ms = Int((self.truncatingRemainder(dividingBy: 1)) * 1000)
+//            let ms = Int((self.truncatingRemainder(dividingBy: 1)) * 1000)
             let seconds = time % 60
             let minutes = (time / 60) % 60
-            let hours = (time / 3600)
+//            let hours = (time / 3600)
 
             return String(format: "%0.2d:%0.2d",minutes,seconds)
 

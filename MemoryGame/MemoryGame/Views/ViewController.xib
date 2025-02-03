@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -40,41 +40,85 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Moves: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o8a-UA-5lm">
-                    <rect key="frame" x="47.999999999999993" y="149.66666666666666" width="94.333333333333314" height="28.666666666666657"/>
+                    <rect key="frame" x="48.000000000000007" y="149.66666666666666" width="94.666666666666686" height="29"/>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NtB-uW-l4R">
-                    <rect key="frame" x="181.66666666666666" y="697" width="30" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NtB-uW-l4R" userLabel="Restart Button">
+                    <rect key="frame" x="181.66666666666666" y="708" width="30" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="30" id="3QJ-Pw-3qC"/>
                         <constraint firstAttribute="height" constant="30" id="S3d-Lp-G4t"/>
                     </constraints>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" image="newgame"/>
+                    <buttonConfiguration key="configuration" style="plain" image="back"/>
                     <connections>
-                        <action selector="newGameTapped:" destination="-1" eventType="touchUpInside" id="3aX-Gg-43K"/>
+                        <action selector="backButtonTapped:" destination="-1" eventType="touchUpInside" id="2RO-vn-2zF"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Time: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H6a-ut-xUE">
-                    <rect key="frame" x="270" y="149" width="77" height="29"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H6a-ut-xUE">
+                    <rect key="frame" x="274" y="149.66666666666666" width="77" height="29"/>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AWB-ot-TQh" userLabel="settings Button">
+                    <rect key="frame" x="48" y="87" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="OmM-Qj-bbe"/>
+                        <constraint firstAttribute="height" constant="30" id="RuD-nx-ZQ3"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="settings" imagePadding="0.0" buttonSize="medium">
+                        <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="small"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="settingsTapped:" destination="-1" eventType="touchUpInside" id="3Yu-td-g1U"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mqe-wY-JtC" userLabel="restart Button">
+                    <rect key="frame" x="321" y="708" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="DAY-Bz-yx9"/>
+                        <constraint firstAttribute="width" constant="30" id="HZL-7K-hgG"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="newgame"/>
+                    <connections>
+                        <action selector="newGameTapped:" destination="-1" eventType="touchUpInside" id="4vl-kx-xOx"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xxp-WU-Kad" userLabel="pause Button">
+                    <rect key="frame" x="48" y="708" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="hZ9-Ha-9b6"/>
+                        <constraint firstAttribute="height" constant="30" id="ofB-nf-FTe"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="pause"/>
+                    <connections>
+                        <action selector="pauseButtonTapped:" destination="-1" eventType="touchUpInside" id="iOM-15-Wj6"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="8zI-3e-4HI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="4Qu-7F-51x"/>
+                <constraint firstItem="xxp-WU-Kad" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="48" id="9e1-71-9tn"/>
                 <constraint firstItem="H6a-ut-xUE" firstAttribute="centerY" secondItem="6Xy-FS-drx" secondAttribute="centerY" id="ACO-uZ-qHG"/>
+                <constraint firstItem="6Xy-FS-drx" firstAttribute="top" secondItem="AWB-ot-TQh" secondAttribute="bottom" constant="24" id="Acr-cp-uyQ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="8zI-3e-4HI" secondAttribute="bottom" constant="150" id="Fbt-ez-iAQ"/>
-                <constraint firstItem="NtB-uW-l4R" firstAttribute="top" secondItem="8zI-3e-4HI" secondAttribute="bottom" constant="29" id="Str-rg-0TX"/>
+                <constraint firstItem="Mqe-wY-JtC" firstAttribute="top" secondItem="8zI-3e-4HI" secondAttribute="bottom" constant="40" id="Fd9-5h-64L"/>
+                <constraint firstItem="xxp-WU-Kad" firstAttribute="top" secondItem="8zI-3e-4HI" secondAttribute="bottom" constant="40" id="Lne-JH-HtF"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Mqe-wY-JtC" secondAttribute="trailing" constant="42" id="N0m-KP-vDv"/>
+                <constraint firstItem="NtB-uW-l4R" firstAttribute="top" secondItem="8zI-3e-4HI" secondAttribute="bottom" constant="40" id="Str-rg-0TX"/>
                 <constraint firstItem="NtB-uW-l4R" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="V15-YM-5Ra"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="8zI-3e-4HI" secondAttribute="trailing" constant="16" id="WmH-og-yZx"/>
                 <constraint firstItem="6Xy-FS-drx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="YDg-He-TvY"/>
                 <constraint firstItem="o8a-UA-5lm" firstAttribute="centerY" secondItem="6Xy-FS-drx" secondAttribute="centerY" id="Z7T-x6-Eke"/>
+                <constraint firstItem="AWB-ot-TQh" firstAttribute="leading" secondItem="o8a-UA-5lm" secondAttribute="leading" id="ZAy-Ie-ejj"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="H6a-ut-xUE" secondAttribute="trailing" constant="42" id="ZnS-2o-7rB"/>
                 <constraint firstItem="8zI-3e-4HI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="150" id="bnp-1M-BTn"/>
                 <constraint firstItem="o8a-UA-5lm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="48" id="laV-NL-LS1"/>
@@ -87,6 +131,9 @@
     <resources>
         <image name="BG_2" width="2400" height="2400"/>
         <image name="Image" width="1986" height="280"/>
+        <image name="back" width="62" height="61"/>
         <image name="newgame" width="62" height="61"/>
+        <image name="pause" width="61" height="61"/>
+        <image name="settings" width="62" height="61"/>
     </resources>
 </document>

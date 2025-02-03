@@ -14,6 +14,7 @@ extension GameViewModel {
         case openCard(Int)
         case updateCollection
         case gameOver
+        case settings
     }
     
     enum StepsState {
@@ -33,24 +34,18 @@ class GameViewModel {
     var timerState = Dynamic<TimerState>(.zeroState)
     var timer: Timer?
     var game = Game()
-    var movesCounter = 0 {
-        didSet {
-            stepsState.value = .newValue(movesCounter)
-        }
-    }
 
-    var stepsController = StepsController()
-    
     func start() {
+        game.generateNewGame()
         mainState.value = .firstLaunch
         stepsState.value = .zeroState
     }
     
     func startNewGame() {
-        timer?.invalidate()
+
         
-        game.generateNewGame()
         mainState.value = .newGameStarted(game.cards)
+        stepsState.value = .newValue(game.steps)
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
             guard let gameTime = self.game.startTime else { return }
@@ -63,54 +58,53 @@ class GameViewModel {
     func cardTapped(at cardNumber: Int) {
         let tappedCard = game.cards[cardNumber]
         guard !game.isBlocked else {
-            print("is blocked, bitch!")
+            print("is blocked")
             return
         }
         guard !tappedCard.isGuessed else {
-            print("is guessed, bitch!")
+            print("is guessed")
             return
         }
         guard !tappedCard.isOpen else {
-            print("is already open, bitch!")
+            print("is already open")
             return
         }
         
         tappedCard.isOpen = true
         mainState.value = .openCard(cardNumber)
         if game.isMatch(cardIndex: cardNumber) {
-            print("game.isMatch")
-            mainState.value = .updateCollection
-            if game.checkGameOver() {
-                mainState.value = .gameOver
+            DispatchQueue.main.async {
+                self.mainState.value = .updateCollection
+                if self.game.checkGameOver() {
+                    self.stopGame()
+                }
             }
         } else {
-            
             DispatchQueue.main.async {
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { timer in
                     tappedCard.isOpen = false
                     self.mainState.value = .updateCollection
                     self.game.isBlocked = false
-                    print("!game.isMatch")
                 }
             }
         }
-
         
-    }
-    
-    func checkIsPair(cardOne: Card, cardTwo: Card) -> Bool {
-        return cardOne.pairId == cardTwo.pairId ? true : false
-    }
-    
-    func checkGameOver() {
-        var counter = 0
-        for card in game.cards {
-            if card.isGuessed == true {
-                counter += 1
-            }
+        DispatchQueue.main.async {
+            self.stepsState.value = .newValue(self.game.steps)
         }
-        if counter == game.cards.count {
-            mainState.value = .gameOver
+    }
+
+    func stopGame() {
+        DispatchQueue.main.async {
+            self.mainState.value = .gameOver
+            self.timer?.invalidate()
+            self.timer = nil
+        }
+    }
+    
+    func switchToSettings() {
+        DispatchQueue.main.async {
+            self.mainState.value = .settings
         }
     }
 }

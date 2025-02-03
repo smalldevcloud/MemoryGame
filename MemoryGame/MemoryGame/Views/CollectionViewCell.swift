@@ -8,6 +8,9 @@
 import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var label: UILabel!
+    
+    @IBOutlet weak var slotBackground: UIImageView!
+    @IBOutlet weak var numberedSlot: UIImageView!
+//    @IBOutlet weak var label: UILabel!
     static let identifier = "CollectionViewCell"
 }

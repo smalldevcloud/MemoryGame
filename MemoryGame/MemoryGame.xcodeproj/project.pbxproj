@@ -10,8 +10,16 @@
 		61EABCBF2C669F53005E1E65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EABCBE2C669F53005E1E65 /* AppDelegate.swift */; };
 		61EABCC82C669F55005E1E65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61EABCC72C669F55005E1E65 /* Assets.xcassets */; };
 		61EABCCB2C669F55005E1E65 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 61EABCCA2C669F55005E1E65 /* Base */; };
-		61EABCD32C669F92005E1E65 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EABCD22C669F92005E1E65 /* Game.swift */; };
 		D45F9E692D37AC9D00B0BD91 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45F9E682D37AC9D00B0BD91 /* Models.swift */; };
+		D45F9FF72D4CA09C00B0BD91 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45F9FF22D4CA09C00B0BD91 /* CollectionViewCell.swift */; };
+		D45F9FF82D4CA09C00B0BD91 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45F9FF42D4CA09C00B0BD91 /* GameViewModel.swift */; };
+		D45F9FF92D4CA09C00B0BD91 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45F9FF52D4CA09C00B0BD91 /* ViewController.swift */; };
+		D45F9FFA2D4CA09C00B0BD91 /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45F9FF32D4CA09C00B0BD91 /* CollectionViewCell.xib */; };
+		D45F9FFB2D4CA09C00B0BD91 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45F9FF62D4CA09C00B0BD91 /* ViewController.xib */; };
+		D45FA0012D4CF0F700B0BD91 /* SettingsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45F9FFF2D4CF0F700B0BD91 /* SettingsCollectionViewCell.swift */; };
+		D45FA0022D4CF0F700B0BD91 /* SettingsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45FA0002D4CF0F700B0BD91 /* SettingsCollectionViewCell.xib */; };
+		D45FA0072D51005100B0BD91 /* WinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45FA0062D51005100B0BD91 /* WinViewController.xib */; };
+		D45FA0082D51005100B0BD91 /* WinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45FA0052D51005100B0BD91 /* WinViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,13 +28,20 @@
 		61EABCC72C669F55005E1E65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		61EABCCA2C669F55005E1E65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		61EABCCC2C669F55005E1E65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		61EABCD22C669F92005E1E65 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		D45F9E682D37AC9D00B0BD91 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		D45F9FF22D4CA09C00B0BD91 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		D45F9FF32D4CA09C00B0BD91 /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
+		D45F9FF42D4CA09C00B0BD91 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		D45F9FF52D4CA09C00B0BD91 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D45F9FF62D4CA09C00B0BD91 /* ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
+		D45F9FFF2D4CF0F700B0BD91 /* SettingsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCollectionViewCell.swift; sourceTree = "<group>"; };
+		D45FA0002D4CF0F700B0BD91 /* SettingsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsCollectionViewCell.xib; sourceTree = "<group>"; };
+		D45FA0052D51005100B0BD91 /* WinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinViewController.swift; sourceTree = "<group>"; };
+		D45FA0062D51005100B0BD91 /* WinViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WinViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		D45F9E862D3BEB3400B0BD91 /* Binding */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Binding; sourceTree = "<group>"; };
-		D45F9E892D3BEC7800B0BD91 /* Game */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Game; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,9 +74,9 @@
 		61EABCBD2C669F53005E1E65 /* MemoryGame */ = {
 			isa = PBXGroup;
 			children = (
+				D45F9FFE2D4CC9E600B0BD91 /* ViewModels */,
 				D45F9E8A2D3BEC9B00B0BD91 /* Views */,
 				D45F9E862D3BEB3400B0BD91 /* Binding */,
-				61EABCD22C669F92005E1E65 /* Game.swift */,
 				D45F9E682D37AC9D00B0BD91 /* Models.swift */,
 				61EABCBE2C669F53005E1E65 /* AppDelegate.swift */,
 				61EABCC72C669F55005E1E65 /* Assets.xcassets */,
@@ -74,9 +89,24 @@
 		D45F9E8A2D3BEC9B00B0BD91 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D45F9E892D3BEC7800B0BD91 /* Game */,
+				D45F9FF22D4CA09C00B0BD91 /* CollectionViewCell.swift */,
+				D45F9FF32D4CA09C00B0BD91 /* CollectionViewCell.xib */,
+				D45F9FF52D4CA09C00B0BD91 /* ViewController.swift */,
+				D45F9FF62D4CA09C00B0BD91 /* ViewController.xib */,
+				D45F9FFF2D4CF0F700B0BD91 /* SettingsCollectionViewCell.swift */,
+				D45FA0002D4CF0F700B0BD91 /* SettingsCollectionViewCell.xib */,
+				D45FA0052D51005100B0BD91 /* WinViewController.swift */,
+				D45FA0062D51005100B0BD91 /* WinViewController.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		D45F9FFE2D4CC9E600B0BD91 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				D45F9FF42D4CA09C00B0BD91 /* GameViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -96,7 +126,6 @@
 			);
 			fileSystemSynchronizedGroups = (
 				D45F9E862D3BEB3400B0BD91 /* Binding */,
-				D45F9E892D3BEC7800B0BD91 /* Game */,
 			);
 			name = MemoryGame;
 			productName = MemoryGame;
@@ -141,8 +170,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D45FA0022D4CF0F700B0BD91 /* SettingsCollectionViewCell.xib in Resources */,
 				61EABCC82C669F55005E1E65 /* Assets.xcassets in Resources */,
 				61EABCCB2C669F55005E1E65 /* Base in Resources */,
+				D45F9FFA2D4CA09C00B0BD91 /* CollectionViewCell.xib in Resources */,
+				D45F9FFB2D4CA09C00B0BD91 /* ViewController.xib in Resources */,
+				D45FA0072D51005100B0BD91 /* WinViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,9 +186,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D45F9FF72D4CA09C00B0BD91 /* CollectionViewCell.swift in Sources */,
+				D45F9FF82D4CA09C00B0BD91 /* GameViewModel.swift in Sources */,
+				D45F9FF92D4CA09C00B0BD91 /* ViewController.swift in Sources */,
+				D45FA0012D4CF0F700B0BD91 /* SettingsCollectionViewCell.swift in Sources */,
 				61EABCBF2C669F53005E1E65 /* AppDelegate.swift in Sources */,
-				61EABCD32C669F92005E1E65 /* Game.swift in Sources */,
 				D45F9E692D37AC9D00B0BD91 /* Models.swift in Sources */,
+				D45FA0082D51005100B0BD91 /* WinViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
