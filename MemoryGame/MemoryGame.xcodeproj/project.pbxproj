@@ -23,6 +23,10 @@
 		D4982AB72D51139C00A2C8B9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4982AB52D51139C00A2C8B9 /* SettingsViewController.swift */; };
 		D4982AB82D51139C00A2C8B9 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4982AB62D51139C00A2C8B9 /* SettingsViewController.xib */; };
 		D4982ABB2D5120A400A2C8B9 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4982ABA2D5120A400A2C8B9 /* UserDefaultsManager.swift */; };
+		D4982AD92D5126D400A2C8B9 /* FakeLSController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4982AD72D5126D400A2C8B9 /* FakeLSController.swift */; };
+		D4982ADA2D5126D400A2C8B9 /* FakeLSController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4982AD82D5126D400A2C8B9 /* FakeLSController.xib */; };
+		D4982ADF2D512F6100A2C8B9 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4982ADD2D512F6100A2C8B9 /* MainMenuViewController.swift */; };
+		D4982AE02D512F6100A2C8B9 /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4982ADE2D512F6100A2C8B9 /* MainMenuViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +48,10 @@
 		D4982AB52D51139C00A2C8B9 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D4982AB62D51139C00A2C8B9 /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		D4982ABA2D5120A400A2C8B9 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		D4982AD72D5126D400A2C8B9 /* FakeLSController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeLSController.swift; sourceTree = "<group>"; };
+		D4982AD82D5126D400A2C8B9 /* FakeLSController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FakeLSController.xib; sourceTree = "<group>"; };
+		D4982ADD2D512F6100A2C8B9 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
+		D4982ADE2D512F6100A2C8B9 /* MainMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenuViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -86,7 +94,6 @@
 				D4982AB92D5113D300A2C8B9 /* Models */,
 				61EABCBE2C669F53005E1E65 /* AppDelegate.swift */,
 				61EABCC72C669F55005E1E65 /* Assets.xcassets */,
-				61EABCC92C669F55005E1E65 /* LaunchScreen.storyboard */,
 				61EABCCC2C669F55005E1E65 /* Info.plist */,
 			);
 			path = MemoryGame;
@@ -95,14 +102,13 @@
 		D45F9E8A2D3BEC9B00B0BD91 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D4982ADC2D512F4500A2C8B9 /* MainMenu */,
+				D4982ADB2D51273600A2C8B9 /* Cells */,
 				D4982AD62D51268200A2C8B9 /* FakeLaunchScreen */,
 				D4982AB42D51138300A2C8B9 /* Settings */,
 				D4982AB32D51136B00A2C8B9 /* YouWin */,
 				D4982AB22D51135A00A2C8B9 /* Game */,
-				D45F9FF22D4CA09C00B0BD91 /* CollectionViewCell.swift */,
-				D45F9FF32D4CA09C00B0BD91 /* CollectionViewCell.xib */,
-				D45F9FFF2D4CF0F700B0BD91 /* SettingsCollectionViewCell.swift */,
-				D45FA0002D4CF0F700B0BD91 /* SettingsCollectionViewCell.xib */,
+				61EABCC92C669F55005E1E65 /* LaunchScreen.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -154,8 +160,30 @@
 		D4982AD62D51268200A2C8B9 /* FakeLaunchScreen */ = {
 			isa = PBXGroup;
 			children = (
+				D4982AD72D5126D400A2C8B9 /* FakeLSController.swift */,
+				D4982AD82D5126D400A2C8B9 /* FakeLSController.xib */,
 			);
 			path = FakeLaunchScreen;
+			sourceTree = "<group>";
+		};
+		D4982ADB2D51273600A2C8B9 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D45F9FF22D4CA09C00B0BD91 /* CollectionViewCell.swift */,
+				D45F9FF32D4CA09C00B0BD91 /* CollectionViewCell.xib */,
+				D45F9FFF2D4CF0F700B0BD91 /* SettingsCollectionViewCell.swift */,
+				D45FA0002D4CF0F700B0BD91 /* SettingsCollectionViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		D4982ADC2D512F4500A2C8B9 /* MainMenu */ = {
+			isa = PBXGroup;
+			children = (
+				D4982ADD2D512F6100A2C8B9 /* MainMenuViewController.swift */,
+				D4982ADE2D512F6100A2C8B9 /* MainMenuViewController.xib */,
+			);
+			path = MainMenu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,12 +248,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D45FA0022D4CF0F700B0BD91 /* SettingsCollectionViewCell.xib in Resources */,
+				D4982AE02D512F6100A2C8B9 /* MainMenuViewController.xib in Resources */,
 				61EABCC82C669F55005E1E65 /* Assets.xcassets in Resources */,
 				61EABCCB2C669F55005E1E65 /* Base in Resources */,
 				D45F9FFA2D4CA09C00B0BD91 /* CollectionViewCell.xib in Resources */,
 				D45F9FFB2D4CA09C00B0BD91 /* ViewController.xib in Resources */,
 				D4982AB82D51139C00A2C8B9 /* SettingsViewController.xib in Resources */,
 				D45FA0072D51005100B0BD91 /* WinViewController.xib in Resources */,
+				D4982ADA2D5126D400A2C8B9 /* FakeLSController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,11 +266,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4982ADF2D512F6100A2C8B9 /* MainMenuViewController.swift in Sources */,
 				D45F9FF72D4CA09C00B0BD91 /* CollectionViewCell.swift in Sources */,
 				D45F9FF82D4CA09C00B0BD91 /* GameViewModel.swift in Sources */,
 				D45F9FF92D4CA09C00B0BD91 /* ViewController.swift in Sources */,
 				D45FA0012D4CF0F700B0BD91 /* SettingsCollectionViewCell.swift in Sources */,
 				61EABCBF2C669F53005E1E65 /* AppDelegate.swift in Sources */,
+				D4982AD92D5126D400A2C8B9 /* FakeLSController.swift in Sources */,
 				D4982ABB2D5120A400A2C8B9 /* UserDefaultsManager.swift in Sources */,
 				D45F9E692D37AC9D00B0BD91 /* Models.swift in Sources */,
 				D45FA0082D51005100B0BD91 /* WinViewController.swift in Sources */,
