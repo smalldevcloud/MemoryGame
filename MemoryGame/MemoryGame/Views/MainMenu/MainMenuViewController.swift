@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import SafariServices
 class MainMenuViewController: UIViewController {
     
     override func viewDidLoad() {
@@ -22,11 +22,15 @@ class MainMenuViewController: UIViewController {
     }
     
     @IBAction func privacyPolicyTapped(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Ooops", message: "there is no link to policy yet", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
-            alert.dismiss(animated: true)
-        })
-        self.present(alert, animated: true, completion: nil)
+        
+        let link = "https://github.com/smalldevcloud/MemoryGame"
+        if let url = URL(string: link) {
+            let config = SFSafariViewController.Configuration()
+            config.entersReaderIfAvailable = true
+
+            let vc = SFSafariViewController(url: url, configuration: config)
+            present(vc, animated: true)
+        }
     }
     
 }

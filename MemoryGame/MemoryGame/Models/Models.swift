@@ -62,7 +62,7 @@ struct Game {
     mutating func isMatch(cardIndex: Int) -> MoveAction {
         isBlocked = true
         guard cards[cardIndex].id != chosenCard?.id else {
-            print("is already open, bitch!")
+            print("is already open!")
             return .notGuessed
         }
         
