@@ -26,11 +26,15 @@ class ViewController: UIViewController {
     }
     
     @IBAction func backButtonTapped(_ sender: UIButton) {
-        print("back to menu")
+        menuTapped()
     }
     
     @IBAction func pauseButtonTapped(_ sender: Any) {
-        print("pause. don't work")
+        let alert = UIAlertController(title: "Ooops", message: "pause not implemented yet", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
+            alert.dismiss(animated: true)
+        })
+        self.present(alert, animated: true, completion: nil)
     }
     
     
@@ -89,8 +93,8 @@ class ViewController: UIViewController {
                 DispatchQueue.main.async {
                     guard let strongSelf = self else { return }
                     let vc = SettingsViewController()
-                    //vc.delegate = self
                     vc.modalPresentationStyle = .formSheet
+                    
                     strongSelf.present(vc, animated: true)
                 }
             }
@@ -221,7 +225,10 @@ extension ViewController: WinViewDelegateProtocol {
     }
     
     func menuTapped() {
-        print("menu tapped")
+        let vc = MainMenuViewController()
+        vc.modalPresentationStyle = .fullScreen
+        vc.modalTransitionStyle = .crossDissolve
+        present(vc, animated: true)
     }
     
     

@@ -37,7 +37,10 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func menuTapped(_ sender: UIButton) {
-        print("menu tapped -=")
+        let vc = MainMenuViewController()
+        vc.modalPresentationStyle = .fullScreen
+        vc.modalTransitionStyle = .crossDissolve
+        present(vc, animated: true)
     }
     
     @IBAction func soundTapped(_ sender: UIButton) {

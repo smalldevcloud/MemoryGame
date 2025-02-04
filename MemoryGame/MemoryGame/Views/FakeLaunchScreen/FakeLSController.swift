@@ -29,6 +29,7 @@ class FakeLSController: UIViewController {
         } completion: { _ in
             let vc = MainMenuViewController()
             vc.modalPresentationStyle = .fullScreen
+            vc.modalTransitionStyle = .crossDissolve
             self.present(vc, animated: false) {
                 print("kek")
             }
