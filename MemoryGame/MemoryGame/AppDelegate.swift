@@ -15,10 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let vc = FakeLSController()
         window!.rootViewController = vc
         window?.makeKeyAndVisible()
-//        setupRoot()
         return true
     }
-
-
 }
 

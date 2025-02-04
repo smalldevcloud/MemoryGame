@@ -41,14 +41,18 @@ class GameViewModel {
     }
     
     func startNewGame() {
+        game.startGame()
         mainState.value = .newGameStarted(game.cards)
         stepsState.value = .newValue(game.steps)
-        //timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-            guard let gameTime = self.game.startTime else { return }
-            let interval = Date().timeIntervalSince(gameTime)
-            
-            self.timerState.value = .newValue(interval.stringFromTimeInterval())
+        timer?.invalidate()
+        DispatchQueue.main.async {
+            self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                guard let gameTime = self.game.startTime else {
+                    return }
+                let interval = Date().timeIntervalSince(gameTime)
+                
+                self.timerState.value = .newValue(interval.stringFromTimeInterval())
+            }
         }
     }
     

@@ -38,7 +38,7 @@
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lka-Xp-d1o">
-                    <rect key="frame" x="151" y="303.33333333333331" width="91" height="34.333333333333314"/>
+                    <rect key="frame" x="76" y="303.33333333333331" width="241" height="34.333333333333314"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" title="RESUME"/>
@@ -47,7 +47,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GlW-7s-a8x">
-                    <rect key="frame" x="137.33333333333334" y="378.33333333333331" width="118.66666666666666" height="34.333333333333314"/>
+                    <rect key="frame" x="76" y="378.33333333333331" width="241" height="34.333333333333314"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" title="MAIN MENU"/>
@@ -79,8 +79,10 @@
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <constraints>
+                <constraint firstItem="GlW-7s-a8x" firstAttribute="leading" secondItem="3sn-JB-qto" secondAttribute="leading" id="1RL-HG-mgm"/>
                 <constraint firstItem="U14-At-Tad" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="9pJ-8x-27V"/>
                 <constraint firstItem="3sn-JB-qto" firstAttribute="trailing" secondItem="U14-At-Tad" secondAttribute="trailing" constant="-60" id="ApP-7P-1BQ"/>
+                <constraint firstItem="Lka-Xp-d1o" firstAttribute="leading" secondItem="BKG-pP-TX5" secondAttribute="leading" id="C1l-gW-zsl"/>
                 <constraint firstItem="GlW-7s-a8x" firstAttribute="centerX" secondItem="3sn-JB-qto" secondAttribute="centerX" id="JHZ-5U-eHp"/>
                 <constraint firstItem="3sn-JB-qto" firstAttribute="top" secondItem="BKG-pP-TX5" secondAttribute="bottom" constant="16" id="MyP-gl-qah"/>
                 <constraint firstItem="BKG-pP-TX5" firstAttribute="leading" secondItem="U14-At-Tad" secondAttribute="leading" constant="60" id="V7z-gm-zwy"/>
@@ -89,7 +91,9 @@
                 <constraint firstItem="Lka-Xp-d1o" firstAttribute="centerY" secondItem="BKG-pP-TX5" secondAttribute="centerY" id="apG-HX-WTn"/>
                 <constraint firstItem="3sn-JB-qto" firstAttribute="leading" secondItem="U14-At-Tad" secondAttribute="leading" constant="60" id="fAG-FO-HIK"/>
                 <constraint firstItem="Cxn-kL-SaZ" firstAttribute="centerX" secondItem="U14-At-Tad" secondAttribute="centerX" id="fCL-87-vAS"/>
+                <constraint firstItem="Lka-Xp-d1o" firstAttribute="trailing" secondItem="BKG-pP-TX5" secondAttribute="trailing" id="kAQ-WA-loB"/>
                 <constraint firstItem="BKG-pP-TX5" firstAttribute="trailing" secondItem="U14-At-Tad" secondAttribute="trailing" constant="-60" id="lQU-oR-z3w"/>
+                <constraint firstItem="GlW-7s-a8x" firstAttribute="trailing" secondItem="3sn-JB-qto" secondAttribute="trailing" id="qlt-Sw-crZ"/>
                 <constraint firstItem="U14-At-Tad" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="178" id="qvy-ZG-b8z"/>
                 <constraint firstItem="Cxn-kL-SaZ" firstAttribute="top" secondItem="3sn-JB-qto" secondAttribute="bottom" constant="8" symbolic="YES" id="whW-Pa-2NN"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="U14-At-Tad" secondAttribute="trailing" constant="16" id="wjk-uN-zyP"/>

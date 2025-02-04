@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     
     @IBAction func newGameTapped(_ sender: UIButton) {
         // MARK: перезапуск игры
-        viewModel.startNewGame()
+        newGamgeTapped()
     }
     
     @IBAction func settingsTapped(_ sender: UIButton) {
@@ -98,6 +98,7 @@ class ViewController: UIViewController {
                     guard let strongSelf = self else { return }
                     let vc = WinViewController()
                     vc.delegate = self
+                    self?.winInteraction()
                     if let time = strongSelf.timerLabel.text, let steps = strongSelf.movesLabel.text {
                         vc.textToSet = "\(time)\n\(steps)"
                         vc.modalPresentationStyle = .formSheet
@@ -140,7 +141,7 @@ class ViewController: UIViewController {
         
         if udManager.getSoundEnabled() {
             DispatchQueue.main.async {
-                self.playSound(isSuccess: true)
+                self.playSound(soundName: "success")
             }
         }
     }
@@ -154,18 +155,20 @@ class ViewController: UIViewController {
         
         if udManager.getSoundEnabled() {
             DispatchQueue.main.async {
-                self.playSound(isSuccess: false)
+                self.playSound(soundName: "fail")
             }
         }
     }
     
-    func playSound(isSuccess: Bool) {
-        var soundName = ""
-        if isSuccess {
-            soundName = "success"
-        } else {
-            soundName = "fail"
+    func winInteraction() {
+        if udManager.getSoundEnabled() {
+            DispatchQueue.main.async {
+                self.playSound(soundName: "level-up")
+            }
         }
+    }
+    
+    func playSound(soundName: String) {
         guard let path = Bundle.main.path(forResource: soundName, ofType:"mp3") else {
             print("fail to find file")
             return }
@@ -236,7 +239,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
 
 extension ViewController: WinViewDelegateProtocol {
     func newGamgeTapped() {
-        viewModel.stopGame()
+        viewModel.start()
         viewModel.startNewGame()
     }
     

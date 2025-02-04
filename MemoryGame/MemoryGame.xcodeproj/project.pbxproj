@@ -27,6 +27,7 @@
 		D4982AE02D512F6100A2C8B9 /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4982ADE2D512F6100A2C8B9 /* MainMenuViewController.xib */; };
 		D4982AE52D520B7300A2C8B9 /* success.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4982AE42D520B7300A2C8B9 /* success.mp3 */; };
 		D4982AE62D520B7300A2C8B9 /* fail.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4982AE32D520B7300A2C8B9 /* fail.mp3 */; };
+		D4982AE92D521D8000A2C8B9 /* level-up.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4982AE82D521D8000A2C8B9 /* level-up.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		D4982ADE2D512F6100A2C8B9 /* MainMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenuViewController.xib; sourceTree = "<group>"; };
 		D4982AE32D520B7300A2C8B9 /* fail.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fail.mp3; sourceTree = "<group>"; };
 		D4982AE42D520B7300A2C8B9 /* success.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = success.mp3; sourceTree = "<group>"; };
+		D4982AE82D521D8000A2C8B9 /* level-up.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "level-up.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -190,6 +192,7 @@
 			children = (
 				D4982AE32D520B7300A2C8B9 /* fail.mp3 */,
 				D4982AE42D520B7300A2C8B9 /* success.mp3 */,
+				D4982AE82D521D8000A2C8B9 /* level-up.mp3 */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				61EABCC82C669F55005E1E65 /* Assets.xcassets in Resources */,
 				61EABCCB2C669F55005E1E65 /* Base in Resources */,
 				D45F9FFA2D4CA09C00B0BD91 /* CollectionViewCell.xib in Resources */,
+				D4982AE92D521D8000A2C8B9 /* level-up.mp3 in Resources */,
 				D45F9FFB2D4CA09C00B0BD91 /* ViewController.xib in Resources */,
 				D4982AB82D51139C00A2C8B9 /* SettingsViewController.xib in Resources */,
 				D45FA0072D51005100B0BD91 /* WinViewController.xib in Resources */,
