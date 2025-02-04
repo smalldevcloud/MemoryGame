@@ -221,7 +221,8 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
             let totalHorizontalSpacing = (columns - 1) * spacing
 
             let itemWidth = (collectionView.bounds.width - totalHorizontalSpacing) / columns
-            let gameItemSize = CGSize(width: itemWidth, height: itemWidth * 1.2)
+        let itemHeight = (collectionView.bounds.height - totalHorizontalSpacing) / columns
+            let gameItemSize = CGSize(width: itemWidth, height: itemHeight)
 
             return gameItemSize
     }
