@@ -16,8 +16,6 @@
 		D45F9FF92D4CA09C00B0BD91 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45F9FF52D4CA09C00B0BD91 /* ViewController.swift */; };
 		D45F9FFA2D4CA09C00B0BD91 /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45F9FF32D4CA09C00B0BD91 /* CollectionViewCell.xib */; };
 		D45F9FFB2D4CA09C00B0BD91 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45F9FF62D4CA09C00B0BD91 /* ViewController.xib */; };
-		D45FA0012D4CF0F700B0BD91 /* SettingsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45F9FFF2D4CF0F700B0BD91 /* SettingsCollectionViewCell.swift */; };
-		D45FA0022D4CF0F700B0BD91 /* SettingsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45FA0002D4CF0F700B0BD91 /* SettingsCollectionViewCell.xib */; };
 		D45FA0072D51005100B0BD91 /* WinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45FA0062D51005100B0BD91 /* WinViewController.xib */; };
 		D45FA0082D51005100B0BD91 /* WinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45FA0052D51005100B0BD91 /* WinViewController.swift */; };
 		D4982AB72D51139C00A2C8B9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4982AB52D51139C00A2C8B9 /* SettingsViewController.swift */; };
@@ -27,6 +25,8 @@
 		D4982ADA2D5126D400A2C8B9 /* FakeLSController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4982AD82D5126D400A2C8B9 /* FakeLSController.xib */; };
 		D4982ADF2D512F6100A2C8B9 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4982ADD2D512F6100A2C8B9 /* MainMenuViewController.swift */; };
 		D4982AE02D512F6100A2C8B9 /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4982ADE2D512F6100A2C8B9 /* MainMenuViewController.xib */; };
+		D4982AE52D520B7300A2C8B9 /* success.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4982AE42D520B7300A2C8B9 /* success.mp3 */; };
+		D4982AE62D520B7300A2C8B9 /* fail.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4982AE32D520B7300A2C8B9 /* fail.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,8 +41,6 @@
 		D45F9FF42D4CA09C00B0BD91 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		D45F9FF52D4CA09C00B0BD91 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D45F9FF62D4CA09C00B0BD91 /* ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
-		D45F9FFF2D4CF0F700B0BD91 /* SettingsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCollectionViewCell.swift; sourceTree = "<group>"; };
-		D45FA0002D4CF0F700B0BD91 /* SettingsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsCollectionViewCell.xib; sourceTree = "<group>"; };
 		D45FA0052D51005100B0BD91 /* WinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinViewController.swift; sourceTree = "<group>"; };
 		D45FA0062D51005100B0BD91 /* WinViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WinViewController.xib; sourceTree = "<group>"; };
 		D4982AB52D51139C00A2C8B9 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -52,6 +50,8 @@
 		D4982AD82D5126D400A2C8B9 /* FakeLSController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FakeLSController.xib; sourceTree = "<group>"; };
 		D4982ADD2D512F6100A2C8B9 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		D4982ADE2D512F6100A2C8B9 /* MainMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenuViewController.xib; sourceTree = "<group>"; };
+		D4982AE32D520B7300A2C8B9 /* fail.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fail.mp3; sourceTree = "<group>"; };
+		D4982AE42D520B7300A2C8B9 /* success.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = success.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -88,6 +88,7 @@
 		61EABCBD2C669F53005E1E65 /* MemoryGame */ = {
 			isa = PBXGroup;
 			children = (
+				D4982AE72D52158A00A2C8B9 /* Sounds */,
 				D45F9FFE2D4CC9E600B0BD91 /* ViewModels */,
 				D45F9E8A2D3BEC9B00B0BD91 /* Views */,
 				D45F9E862D3BEB3400B0BD91 /* Binding */,
@@ -171,8 +172,6 @@
 			children = (
 				D45F9FF22D4CA09C00B0BD91 /* CollectionViewCell.swift */,
 				D45F9FF32D4CA09C00B0BD91 /* CollectionViewCell.xib */,
-				D45F9FFF2D4CF0F700B0BD91 /* SettingsCollectionViewCell.swift */,
-				D45FA0002D4CF0F700B0BD91 /* SettingsCollectionViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -184,6 +183,15 @@
 				D4982ADE2D512F6100A2C8B9 /* MainMenuViewController.xib */,
 			);
 			path = MainMenu;
+			sourceTree = "<group>";
+		};
+		D4982AE72D52158A00A2C8B9 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				D4982AE32D520B7300A2C8B9 /* fail.mp3 */,
+				D4982AE42D520B7300A2C8B9 /* success.mp3 */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,8 +255,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D45FA0022D4CF0F700B0BD91 /* SettingsCollectionViewCell.xib in Resources */,
 				D4982AE02D512F6100A2C8B9 /* MainMenuViewController.xib in Resources */,
+				D4982AE52D520B7300A2C8B9 /* success.mp3 in Resources */,
+				D4982AE62D520B7300A2C8B9 /* fail.mp3 in Resources */,
 				61EABCC82C669F55005E1E65 /* Assets.xcassets in Resources */,
 				61EABCCB2C669F55005E1E65 /* Base in Resources */,
 				D45F9FFA2D4CA09C00B0BD91 /* CollectionViewCell.xib in Resources */,
@@ -270,7 +279,6 @@
 				D45F9FF72D4CA09C00B0BD91 /* CollectionViewCell.swift in Sources */,
 				D45F9FF82D4CA09C00B0BD91 /* GameViewModel.swift in Sources */,
 				D45F9FF92D4CA09C00B0BD91 /* ViewController.swift in Sources */,
-				D45FA0012D4CF0F700B0BD91 /* SettingsCollectionViewCell.swift in Sources */,
 				61EABCBF2C669F53005E1E65 /* AppDelegate.swift in Sources */,
 				D4982AD92D5126D400A2C8B9 /* FakeLSController.swift in Sources */,
 				D4982ABB2D5120A400A2C8B9 /* UserDefaultsManager.swift in Sources */,

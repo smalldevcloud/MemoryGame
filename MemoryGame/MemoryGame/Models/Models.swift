@@ -59,11 +59,11 @@ struct Game {
         steps = 0
     }
     
-    mutating func isMatch(cardIndex: Int) -> Bool {
+    mutating func isMatch(cardIndex: Int) -> MoveAction {
         isBlocked = true
         guard cards[cardIndex].id != chosenCard?.id else {
             print("is already open, bitch!")
-            return false
+            return .notGuessed
         }
         
         if let currCard = chosenCard {
@@ -74,16 +74,18 @@ struct Game {
                 chosenCard = nil
                 isBlocked = false
                 setGuessedPair(pairId: currCard.pairId)
-                return true
+                return .gussed
             } else {
+                isBlocked = false
+                chosenCard?.isOpen = false
                 chosenCard = nil
-                return false
+                return .notGuessed
             }
             
         } else {
             chosenCard = cards[cardIndex]
             isBlocked = false
-            return false
+            return .firstTap
         }
         
     }
@@ -103,6 +105,14 @@ struct Game {
         }
     }
 }
+
+enum MoveAction {
+    case gussed
+    case notGuessed
+    case firstTap
+}
+
+
 
 extension TimeInterval{
 

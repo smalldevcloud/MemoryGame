@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
     
@@ -14,6 +15,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var timerLabel: UILabel!
     var viewModel = GameViewModel()
     var cards: [Card] = []
+    let udManager = UserDefaultsManager.shared
+    var player: AVAudioPlayer?
     
     @IBAction func newGameTapped(_ sender: UIButton) {
         // MARK: перезапуск игры
@@ -21,8 +24,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func settingsTapped(_ sender: UIButton) {
-        viewModel.switchToSettings()
-
+        DispatchQueue.main.async {
+            let vc = SettingsViewController()
+            vc.modalPresentationStyle = .formSheet
+            self.present(vc, animated: true)
+        }
     }
     
     @IBAction func backButtonTapped(_ sender: UIButton) {
@@ -46,6 +52,7 @@ class ViewController: UIViewController {
         self.bindStepsState()
         self.bindTimerState()
         self.viewModel.start()
+        self.viewModel.startNewGame()
         
     }
     
@@ -76,7 +83,15 @@ class ViewController: UIViewController {
                     let indexPath = IndexPath(row: index, section: 0)
                     self?.collectionView.reloadItems(at: [indexPath])
                 }
-            case .updateCollection:
+            case let .updateCollection(action):
+                switch action {
+                case .gussed:
+                    self?.successInteraction()
+                case .notGuessed:
+                    self?.failInteraction()
+                case .firstTap:
+                    print("do nothing")
+                }
                 self?.collectionView.reloadData()
             case .gameOver:
                 DispatchQueue.main.async {
@@ -89,14 +104,7 @@ class ViewController: UIViewController {
                         strongSelf.present(vc, animated: true)
                     }
                 }
-            case .settings:
-                DispatchQueue.main.async {
-                    guard let strongSelf = self else { return }
-                    let vc = SettingsViewController()
-                    vc.modalPresentationStyle = .formSheet
-                    
-                    strongSelf.present(vc, animated: true)
-                }
+
             }
         }
     }
@@ -123,24 +131,54 @@ class ViewController: UIViewController {
         }
     }
     
-    func updateTimerLabel() {
-//        // MARK: обновление лейбла с временем
-//        if let gameTime = game.getGameTime() {
-//            timerLabel.text = String(format: "Time: %.0f", gameTime)
-//        }
+    func successInteraction() {
+        if udManager.getVibroEnabled() {
+            DispatchQueue.main.async {
+                Vibration.success.vibrate()
+            }
+        }
+        
+        if udManager.getSoundEnabled() {
+            DispatchQueue.main.async {
+                self.playSound(isSuccess: true)
+            }
+        }
     }
     
-    func checkGameOver() {
-//        // MARK: проверка не угадал ли уже юзер все пары, и если угадал то алёрт и остановка игры
-//        if game.guessedPairs.count == game.pairs.count {
-//            timer?.invalidate()
-//            let alert = UIAlertController(title: "You Win!", message: "wow, that's impressive", preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
-//                alert.dismiss(animated: true)
-//            })
-//            present(alert, animated: true, completion: nil)
-//        }
+    func failInteraction() {
+        if udManager.getVibroEnabled() {
+            DispatchQueue.main.async {
+                Vibration.error.vibrate()
+            }
         }
+        
+        if udManager.getSoundEnabled() {
+            DispatchQueue.main.async {
+                self.playSound(isSuccess: false)
+            }
+        }
+    }
+    
+    func playSound(isSuccess: Bool) {
+        var soundName = ""
+        if isSuccess {
+            soundName = "success"
+        } else {
+            soundName = "fail"
+        }
+        guard let path = Bundle.main.path(forResource: soundName, ofType:"mp3") else {
+            print("fail to find file")
+            return }
+        let url = URL(fileURLWithPath: path)
+
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            player?.play()
+            
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
 }
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -151,21 +189,16 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.identifier, for: indexPath) as? CollectionViewCell else { return UICollectionViewCell() }
-        // MARK: если ячейка не угадана - показывает "?"
         let gameCard = cards[indexPath.row]
         if gameCard.isGuessed {
             cell.numberedSlot.image = UIImage(named: "slot\(gameCard.pairId)")
-//            cell.label.text = String(gameCard.pairId)
         } else {
             if gameCard.isOpen {
                 cell.numberedSlot.image = UIImage(named: "slot\(gameCard.pairId)")
-//                cell.label.text = String(gameCard.pairId)
             } else {
                 cell.numberedSlot.image = nil
-//                cell.label.text = "?"
             }
         }
-        
         return cell
     }
     
@@ -179,8 +212,6 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegateFlowLayout
 extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        switch viewModel.mainState.value {
-        case .firstLaunch, .newGameStarted, .openCard, .updateCollection, .gameOver:
             let columns: CGFloat = 4
             // Match spacing below
             let spacing: CGFloat = 5
@@ -190,31 +221,16 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
             let gameItemSize = CGSize(width: itemWidth, height: itemWidth * 1.2)
 
             return gameItemSize
-        case .settings:
-            let settingsItemSize = CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
-            return settingsItemSize
-        }
-
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         // horizontal space between items
-        switch viewModel.mainState.value {
-        case .firstLaunch, .newGameStarted, .openCard, .updateCollection, .gameOver:
-            return 5
-        case .settings:
             return 0
-        }
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         // vertical space between lines
-        switch viewModel.mainState.value {
-        case .firstLaunch, .newGameStarted, .openCard, .updateCollection, .gameOver:
             return 5
-        case .settings:
-            return 0
-        }
     }
 }
 
@@ -233,4 +249,48 @@ extension ViewController: WinViewDelegateProtocol {
     
     
 }
+
+enum Vibration {
+        case error
+        case success
+        case warning
+        case light
+        case medium
+        case heavy
+        @available(iOS 13.0, *)
+        case soft
+        @available(iOS 13.0, *)
+        case rigid
+        case selection
+        case oldSchool
+
+        public func vibrate() {
+            switch self {
+            case .error:
+                UINotificationFeedbackGenerator().notificationOccurred(.error)
+            case .success:
+                UINotificationFeedbackGenerator().notificationOccurred(.success)
+            case .warning:
+                UINotificationFeedbackGenerator().notificationOccurred(.warning)
+            case .light:
+                UIImpactFeedbackGenerator(style: .light).impactOccurred()
+            case .medium:
+                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+            case .heavy:
+                UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+            case .soft:
+                if #available(iOS 13.0, *) {
+                    UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+                }
+            case .rigid:
+                if #available(iOS 13.0, *) {
+                    UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
+                }
+            case .selection:
+                UISelectionFeedbackGenerator().selectionChanged()
+            case .oldSchool:
+                print("not implemented")
+            }
+        }
+    }
 
